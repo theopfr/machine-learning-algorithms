@@ -7,7 +7,9 @@
     hidden-layer: (32, 1) , ReLU
     output-layer: (3, 1), Sigmoid
 
-### - loss-function: Mean-Squared-Error
-### - optimizer: gradient-descent
+### - loss-function: 
+    MSELoss (Mean-Squared-Error)
+### - optimizer:
+    gradient-descent
 
                
