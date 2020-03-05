@@ -1,5 +1,5 @@
 
-# neural-network for Iris blossom classification
+# neural-network for "Iris Flower" classification
 ## implemented from scratch
 
 ### - architecture:
