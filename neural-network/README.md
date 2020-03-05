@@ -2,22 +2,12 @@
 # neural-network for Iris blossom classification
 ## implemented from scratch
 
-### architecture:
+### - architecture:
+    input-layer : (3,1)
+    hidden-layer: (32, 1) , ReLU
+    output-layer: (3, 1), Sigmoid
 
-            o
-    o       o       o
-            .
-    o       .       o
-            .
-    o       o       o
-            o
-
-   3,1     32,1    3,1
-          /          \
-        relu       sigmoid
-
-
-- loss-function: Mean-Squared-Error
-- optimizer: gradient-descent
+### - loss-function: Mean-Squared-Error
+### - optimizer: gradient-descent
 
                
