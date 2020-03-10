@@ -1,3 +1,3 @@
 # k-nearest-neighbor for "Iris Flower" classification
 
-#### no parameter tuning for k necessary because of the small dataset
+![fig1](example_images/fig1.png)

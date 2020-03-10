@@ -20,6 +20,7 @@ def load_dataset(test_size: int) -> list:
 """ apply preprocessing """
 def preprocess(test_size: float=0.1):
     train_x, test_x, train_y, test_y = load_dataset(test_size)
+
     return train_x, test_x, train_y, test_y
 
 
