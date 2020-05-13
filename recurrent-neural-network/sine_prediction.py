@@ -137,7 +137,7 @@ class RNN:
     def test(self):
         predicted = []
 
-        self.test_data = self.train_data
+        # self.test_data is acutally the same as self.train_data :/ hm
 
         for i in tqdm(range(0, (len(self.test_data) - self.sequence_length - 1))):
             hiddenstate = np.zeros((self.hiddensize, 1))
