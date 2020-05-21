@@ -22,7 +22,7 @@ class RNN:
 
         self.weights0 = 2 * np.random.random((self.hiddensize, 1)) - 1
         self.weights1 = 2 * np.random.random((1, self.hiddensize)) - 1
-        self.hidden_state_weights = 2 * np.random.random((1, self.hiddensize)) - 1  # for i in range(self.sequence_length)]
+        self.hidden_state_weights = 2 * np.random.random((1, self.hiddensize)) - 1
 
     """ sigmoid activation function """
     def _sigmoid(self, x, deriv: bool=False, do_dropout: bool=False):
@@ -35,7 +35,7 @@ class RNN:
         else:
             return s
 
-    """ relu activation function """
+    """ relu activation function NOT IN USAGE """
     def _relu(self, x, deriv: bool=False, do_dropout: bool=False):
         if deriv:
             return 1/2 * (1 + np.sign(x))
@@ -45,7 +45,7 @@ class RNN:
             return self._dropout(s)
         else:
             return s
-
+    """ tangens hyperbolicus activation function NOT IN USAGE """
     def _tanh(self, x, deriv=False, do_dropout=False):
         if deriv:
             return 4 / pow((np.exp(x) + np.exp(-x)), 2)
@@ -62,7 +62,7 @@ class RNN:
             return 2 * np.subtract(y_true, y_prediction) * -deriv[1]
         return np.square(np.subtract(y_true, y_prediction))
 
-    """ log-loss function """
+    """ log-loss function NOT IN USAGE """
     def _log_loss(self, y_true: float, y_prediction: float, deriv: tuple=(False, None)):
         if deriv[0]:
             return np.subtract(y_true, y_prediction) * deriv[1]
@@ -77,17 +77,9 @@ class RNN:
         mat = mat * mask
         return mat
 
-    def _normalize(self, x):
-        maximum = max(self.train_data)
-        x = np.array(x) / maximum
-        #x = ((x - min(x)) / (max(x) - min(x)))
-        return list(x)
-
-
     """ get sample from time-series data by shifting the previous sample by one """
     def _shift_sample(self, dataset: list, idx: int):
         sample = dataset[idx:(idx + self.sequence_length)]
-        #sample = self._normalize(sample)
         target = dataset[(self.sequence_length + idx) + 1]
 
         return sample, target
@@ -104,6 +96,7 @@ class RNN:
                 # load new sample (sliding-window)
                 input_sequence, target = self._shift_sample(self.train_data, i)
 
+                # foward through time
                 for timestep in range(len(input_sequence)):
                     input_value = input_sequence[timestep]
 
@@ -116,6 +109,7 @@ class RNN:
                     loss = self._MSE(target, output)[0][0]
                     timestep_losses.append(loss)
 
+                # backward though time
                 for timestep in list(range(len(input_sequence)))[::-1]:
                     prediction = outputs[timestep]
 
